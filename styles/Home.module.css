@@ -11,12 +11,18 @@
 
 
 .App {
-  text-align: center;
   display: flex;
   width: 100vw;
-  height: 500px;
+  height: 100vh;
 }
-
+.container {
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+  top: 40%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
 .endOff{
   margin: auto;
   width: 100vw;
@@ -41,17 +47,7 @@
   font-weight: 10;
   color: #ffffff;
 }
-.container {
-  margin: auto;
-  width: 100%;
-  max-width: 500px;
-  padding: 2rem;
 
-  position:relative;
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
 .title {
   text-align: left;
   font-size: 16px;
