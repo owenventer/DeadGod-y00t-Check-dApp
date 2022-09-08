@@ -78,7 +78,18 @@ export default function Home() {
             
           </p>
         </div>
+        <div className={styles.endOff}>
+        <p>
+        <a href="https://twitter.com/NFTOwen"><Image className={styles.pfp} src="/pfp.png" alt="SMB#1495" width="60px" height="60px">
+        </Image></a> 
+        </p>
+        
+      <p className={styles.signOff}>
+      Built by <a href="https://twitter.com/NFTOwen">owen.sol</a> 
+      </p>
+        </div>
       </div>
+      
     </div>
   );
 }
