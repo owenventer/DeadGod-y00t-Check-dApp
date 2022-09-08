@@ -17,34 +17,44 @@ export default function Home() {
   const [searchNum,setSearchNum]=useState("#1");
   const[y00tClaimed,sety00tClaimed]=useState(true);
   const fetchNft = async () => {
-  sety00tClaimed(true);
-  y00tClaimed=true;
-  document.getElementById("outText1").innerHTML="Result:";
-  document.getElementById("outText2").innerHTML="Checking..."
-  
-  myNfts = await metaplex.nfts().findAllByOwner({ owner: address }).run();
-  console.log("len:"+myNfts.length);
-  //loop through each nft in the wallet and check to see if the number corrolates with the DeadGod
-  for (var i=0 ; i <myNfts.length ; i++)
-  {
-    if(myNfts[i]["name"]===searchNum){
-      y00tClaimed=false;
-      console.log("found");
-      console.log("searched(DG):"+searchNum);
-      console.log("t00b"+myNfts[i]["name"]);
-      
+    sety00tClaimed(true);
+    y00tClaimed=true;
+ 
+  const checkNum=parseInt(searchNum.substring(18));
+
+  if(checkNum<0||checkNum>10000){
+    console.log("invalid");
+    document.getElementById("outText1").innerHTML="Invalid DeadGod Number";
+    document.getElementById("outText2").innerHTML="";
+    
+  }else{
+    document.getElementById("outText1").innerHTML="Result:";
+    document.getElementById("outText2").innerHTML="Checking..."
+    myNfts = await metaplex.nfts().findAllByOwner({ owner: address }).run();
+    console.log("len:"+myNfts.length);
+    //loop through each nft in the wallet and check to see if the number corrolates with the DeadGod
+    for (var i=0 ; i <myNfts.length ; i++)
+    {
+      if(myNfts[i]["name"]===searchNum){
+        y00tClaimed=false;
+        console.log("found");
+        console.log("searched(DG):"+searchNum);
+        console.log("t00b"+myNfts[i]["name"]);
+        
+      }
+    }
+    console.log(y00tClaimed);
+    if(y00tClaimed===true){
+      console.log("updatedC");
+      document.getElementById("outText1").innerHTML="Result:";
+      document.getElementById("outText2").innerHTML="t00b already claimed.";
+    }else{
+      console.log("updatedNC");
+      document.getElementById("outText1").innerHTML="Result:";
+      document.getElementById("outText2").innerHTML="t00b NOT yet claimed.";
     }
   }
-  console.log(y00tClaimed);
-  if(y00tClaimed===true){
-    console.log("updatedC");
-    document.getElementById("outText1").innerHTML="Result:";
-    document.getElementById("outText2").innerHTML="t00b already claimed.";
-  }else{
-    console.log("updatedNC");
-    document.getElementById("outText1").innerHTML="Result:";
-    document.getElementById("outText2").innerHTML="t00b NOT yet claimed.";
-  }
+  
   };
 
   return (
